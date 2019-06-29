@@ -1,0 +1,19 @@
+#!/bin/bash
+
+DEPS="docker"
+
+
+setup_install(){
+    docker pull minio/minio
+
+    docker run \
+      --name minio1 \
+      --restart always \
+      -d \
+      -e "MINIO_ACCESS_KEY=wention" \
+      -e "MINIO_SECRET_KEY=wentionx93" \
+      -p 9000:443 \
+      -v /data/docker/minio/data:/data \
+      -v /data/docker/minio/config:/root/.minio \
+      minio/minio server --address ":443" /data
+}
