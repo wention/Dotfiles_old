@@ -1,5 +1,22 @@
 #!/bin/bash
 
-wget https://dl.min.io/client/mc/release/linux-amd64/mc
-chmod +x mc 
-sudo mv mc /usr/local/bin
+setup_minio_client_install() {
+    wget https://dl.min.io/client/mc/release/linux-amd64/mc
+    chmod +x mc 
+    sudo mv mc /usr/local/bin
+}
+
+setup_minio_server_install(){
+    DEPS="docker"
+
+    docker run \
+      --name minio1 \
+      --restart always \
+      -d \
+      -e "MINIO_ACCESS_KEY=wention" \
+      -e "MINIO_SECRET_KEY=wentionx93" \
+      -p 9000:443 \
+      -v /data/docker/minio/data:/data \
+      -v /data/docker/minio/config:/root/.minio \
+      minio/minio server --address ":443" /data
+}
