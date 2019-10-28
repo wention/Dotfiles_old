@@ -1,6 +1,10 @@
 #!/bin/bash
 
 #######################################
+# For VPS
+#curl -fsSL https://get.docker.com | sudo sh
+
+#######################################
 # For ubuntu
 
 # Install packages to allow apt to use a repository over HTTPS 
