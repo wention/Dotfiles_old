@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#######################################
+# For VPS
+curl -fsSL https://get.docker.com | sudo sh
+
+docker pull wention/v2ray
+
+mkdir -p /srv/docker/v2ray
+
+docker run --name v2ray -d --restart always --network host -v /srv/docker/v2ray:/data wention/v2ray
